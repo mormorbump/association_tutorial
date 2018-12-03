@@ -1,0 +1,22 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<hr>
+<p><span>email: </span><%= @user.email %></p>
+<p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
+<p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>
+<% if current_user != @user %>
+    <% if @user.followed_by?(current_user) %>
+        <p><%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
+    <% else %>
+        <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
+    <% end %>
+<% end %>
+<% @tweets.each do |tweet| %>
+  <hr>
+  <p><span>ツイート内容: </span><%=link_to tweet.body, tweet_path(tweet.id) %></p>
+<% end %>
+
+<% @favorite_tweets.each do |tweet| %>
+  <hr>
+  <p><span>ファボツイート内容: </span><%=link_to tweet.body, tweet_path(tweet.id) %></p>
+<% end %>
