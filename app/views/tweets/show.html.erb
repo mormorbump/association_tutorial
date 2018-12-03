@@ -3,3 +3,17 @@
 
 <p><span>email: </span><%= @user.email %></p>
 <p><span>ツイート内容: </span><%= @tweet.body %></p>
+
+<%= form_for([@tweet, @comment]) do |f| %>
+  <p>
+    <%= f.label :body,"コメント" %>
+    <%= f.text_field :body %>
+  </p>
+  <%= f.submit %>
+<% end %>
+
+<% @comments.each do |comment| %>
+  <hr>
+  <p><span>email: </span><%=link_to comment.user.email, user_path(comment.user.id) %></p>
+  <p><span>コメント内容: </span><%= comment.body %></p>
+<% end %>

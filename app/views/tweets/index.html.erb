@@ -6,9 +6,9 @@
   <p><span>ツイート内容: </span><%=link_to tweet.body, tweet_path(tweet.id) %></p>
   <% if user_signed_in? %>
     <% if tweet.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-        <p><span>お気に入り解除: </span><%=link_to tweet.favorites.count, tweet_favorite_path(tweet.id), method: :delete %></p>
+        <p><span>お気に入り解除: </span><%=link_to tweet.favorites.count, tweet_favorites_path(tweet.id), method: :delete %></p>
     <% else %>
-        <p><span>お気に入り登録: </span><%=link_to tweet.favorites.count, tweet_favorite_path(tweet.id), method: :post %></p>
+        <p><span>お気に入り登録: </span><%=link_to tweet.favorites.count, tweet_favorites_path(tweet.id), method: :post %></p>
     <% end %>
     <!-- ここを追加 -->
     <% if current_user != tweet.user %>

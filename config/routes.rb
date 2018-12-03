@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'comments/create'
+  get 'comments/destroy'
   #==================削除orコメントアウト================
   # get 'relationships/create'
   # get 'relationships/destroy'
@@ -9,7 +11,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :tweets do
-    resource :favorite, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+    resource :comments, only: [:create, :destroy]
   end
 
   # ================ここをネスト(入れ子)した形に変更
